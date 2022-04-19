@@ -397,7 +397,7 @@ String sign = EncryDigestUtil.hmacSign(params,your_secret_key);
 {
     "code": "1000",
     "message": "操作成功。",
-    "data": 【
+    "data": [
         { 
             "canDeposit":1, //充值是否开启 0(关闭) 1(开启)
             "canWithdraw":1,//提币是否开启 0(关闭) 1(开启)
@@ -414,7 +414,7 @@ String sign = EncryDigestUtil.hmacSign(params,your_secret_key);
             "chain":"" //token所在的链，token类型才返回该子段
         },
         ......
-    】
+    ]
 }
 ```
 
