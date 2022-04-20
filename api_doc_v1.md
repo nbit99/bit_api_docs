@@ -359,7 +359,92 @@ String sign = EncryDigestUtil.hmacSign(params,your_secret_key);
 ```
 
 
-### 4.8 获取币种信息
+
+### 4.9 获取单个币种信息
+**描述**：
+获取商户账户配置
+
+**请求地址**
+
+> https://ttm.bitbank.com/api/getCoinsInfo
+
+**请求实例(POST)**
+
+> https://ttm.bitbank.com/api/getCoinsInfo?accesskey=d68b4e66-879a-xxxx-9837-1d4deed3fa0c&currency=
+
+**必要授权**
+
+签名，除sign,reqTime,des_key不需要签名，其他都要，按照参数名的ascii排序
+
+**请求参数**
+
+
+| 参数名       | 类型     | 是否必须 | 描述             |
+| :-------- | :----- | :--- | :------------- |
+| accesskey | String | 是    | accesskey      |
+| currency  | String | 是    | 币种，可以为空，为空返回所有 |
+| sign      | String | 是    | 请求加密签名串        |
+| reqTime   | String | 是    | 当前时间毫秒数        |
+
+
+**返回结果**
+
+| 参数名              | 类型         | 是否必须 | 示例         | 描述                     |
+| :--------------- | :--------- | :--- | :--------- | :--------------------- |
+| code             | String     | 是    | 1000       | 参考第5的返回码               |
+| canCharge        | bool       | 是    | true       | 能否充值                   |
+| canWithdraw      | bool       | 是    | false      | 能否提现                   |
+| chargeMin        | BigDecimal | 是    | 100        | 最低充值金额(0则不生效)          |
+| confirmTimes     | int        | 是    | 12         | 建议的，确认充值到账确认次数         |
+| canWithdrawTimes | int        | 是    | 36         | 建议的，可提现充值确认次数          |
+| defaultFee       | BigDecimal | 是    | 0.1        | 建议矿工费                  |
+| type             | String     | 是    | tokenCoins | 币种类型(erc20为tokenCoins) |
+| changeTo         | String     | 否    | zeos       | 换链到哪个                  |
+| decimals         | int        | 否    | 18         | erc20的小数位              |
+| contractAddress  | String     | 否    | xxx        | erc20的合约地址             |
+| otherChain       | JSON Array | 否    | []         | 其它链                     |
+| currency         | JSON Array | 否    | btc        | 币种标识                    |
+| name             | String     | 是    | Bitcoin    | 名称                     |
+| withdrawMin      | BigDecimal | 是    | 0.001      | 小提币金额（0代表不限制）                     |
+| withdrawMax      | BigDecimal | 是    | 1000.00    | 最大提币金额（0代表不限制）                     |
+| exCurrency       | String     | 是    | zb         | 用于交易对中的标识 比如： trxusdt eusdt > 交易对中都是 usdt |
+| nType            | int        | 是    | 1          | 新类型 1 主链  2 token                     |
+| chain            | String     | 否    | ztrx       | token所在的主链币种标识                     |
+| feeRate          | BigDecimal | 是    | 0.01       | 提币费率                     |
+| precision        | int        | 是    | 8          | 精度 提币支持的小数位                     |
+| price            | BigDecimal | 是    | 100.00     | 币价 单位 QC/coin                     |
+
+
+**返回示例**
+
+```
+{
+    "code":1000,
+    "message":"操作成功",
+    "data":[
+        {
+            "canCharge":true,
+            "canWithdraw":true,
+            "canWithdrawTimes":6,
+            "chargeFee":0.0001,
+            "chargeMin":0.0001,
+            "confirmTimes":1,
+            "decimals":0,
+            "defaultFee":0.0002,
+            "exCurrency":"BTC",
+            "feeRate":0.00016,
+            "nType":1,
+            "precision":8,
+            "price":298500,
+            "type":"trustOpenWallet",
+            "withdrawMax":0,
+            "withdrawMin":0.0002
+        }
+        ......
+}
+```
+
+### 4.10 获取所有币种信息
 **描述**：
 获取币种信息，标识符、动态提币费率、充值提币限额、类型...
 
