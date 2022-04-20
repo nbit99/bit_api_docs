@@ -360,17 +360,17 @@ String sign = EncryDigestUtil.hmacSign(params,your_secret_key);
 
 
 
-### 4.9 获取单个币种信息
+### 4.9 获取币种信息 
 **描述**：
 获取商户账户配置
 
 **请求地址**
 
-> https://ttm.bitbank.com/api/getCoinsInfo
+> https://ttm.BITXX.com/api/getCoinsInfo
 
 **请求实例(POST)**
 
-> https://ttm.bitbank.com/api/getCoinsInfo?accesskey=d68b4e66-879a-xxxx-9837-1d4deed3fa0c&currency=
+> https://ttm.BITXX.com/api/getCoinsInfo?accesskey=d68b4e66-879a-xxxx-9837-1d4deed3fa0c&currency=
 
 **必要授权**
 
@@ -446,6 +446,7 @@ String sign = EncryDigestUtil.hmacSign(params,your_secret_key);
 
 ### 4.10 获取所有币种信息
 **描述**：
+功能与getCoinsInfo功能一样，
 获取币种信息，标识符、动态提币费率、充值提币限额、类型...
 
 **请求地址**
