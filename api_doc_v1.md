@@ -360,17 +360,19 @@ String sign = EncryDigestUtil.hmacSign(params,your_secret_key);
 
 
 
-### 4.9 获取币种信息 
+### 4.9 获取单个币种信息 
 **描述**：
-获取商户账户配置
+获取币种信息，标识符、动态提币费率、充值提币限额、类型...
+此接口的一些参数会动态变化，如：feeRate（单笔提币建议手续费），需要平台定时更新到系统内存，可作为显示给用户的提币费率，用户提交提币时需要
+判断提交的费率是否小于等于从商户获取的费率。
 
 **请求地址**
 
-> https://ttm.BITXX.com/api/getCoinsInfo
+> https://ttm.BITXX.com/api/currency
 
 **请求实例(POST)**
 
-> https://ttm.BITXX.com/api/getCoinsInfo?accesskey=d68b4e66-879a-xxxx-9837-1d4deed3fa0c&currency=
+> https://ttm.BITXX.com/api/currency?accesskey=d68b4e66-879a-xxxx-9837-1d4deed3fa0c&currency=btc
 
 **必要授权**
 
@@ -397,7 +399,7 @@ String sign = EncryDigestUtil.hmacSign(params,your_secret_key);
 | chargeMin        | BigDecimal | 是    | 100        | 最低充值金额(0则不生效)          |
 | confirmTimes     | int        | 是    | 12         | 建议的，确认充值到账确认次数         |
 | canWithdrawTimes | int        | 是    | 36         | 建议的，可提现充值确认次数          |
-| defaultFee       | BigDecimal | 是    | 0.1        | 建议矿工费                  |
+| defaultFee       | BigDecimal | 是    | 0.1        | 建议矿工费（弃用，由feeRate代替）   |
 | type             | String     | 是    | tokenCoins | 币种类型(erc20为tokenCoins) |
 | changeTo         | String     | 否    | zeos       | 换链到哪个                  |
 | decimals         | int        | 否    | 18         | erc20的小数位              |
@@ -446,8 +448,7 @@ String sign = EncryDigestUtil.hmacSign(params,your_secret_key);
 
 ### 4.10 获取所有币种信息
 **描述**：
-功能与getCoinsInfo功能一样，
-获取币种信息，标识符、动态提币费率、充值提币限额、类型...
+获取所有币种信息，标识符、动态提币费率、充值提币限额、类型...
 
 **请求地址**
 
@@ -503,7 +504,8 @@ String sign = EncryDigestUtil.hmacSign(params,your_secret_key);
     ]
 }
 ```
-
+**返回结果**
+参考api/currency接口
 
 
 ##  5.回调接口
