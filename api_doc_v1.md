@@ -60,7 +60,9 @@ String sign = EncryDigestUtil.hmacSign(params,your_secret_key);
 
 **必要授权**
 
-签名，除sign,reqTime,des_key不需要签名，其他都要，按照参数名的ascii排序
+签名，除sign,reqTime,des_key不需要签名，其他都要，按照参数名的ascii排序,
+注：memo类型的币种可以用address加下划线（_）MEMO的形式如：(bts01_122xx)
+会同时验证地址和MEMO的有效性
 
 **请求参数**
 
